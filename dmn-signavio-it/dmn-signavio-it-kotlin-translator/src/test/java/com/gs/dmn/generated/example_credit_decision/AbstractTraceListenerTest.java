@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 
 public class AbstractTraceListenerTest {
     protected URI resource(String path) {
@@ -38,7 +39,7 @@ public class AbstractTraceListenerTest {
     }
 
     protected File writeNodes(Object nodes) throws IOException {
-        File actualOutputFile = File.createTempFile("trace", "trc");
+        File actualOutputFile = Files.createTempFile("trace", "trc").toFile();
         JsonSerializer.OBJECT_MAPPER.writeValue(actualOutputFile, nodes);
         return actualOutputFile;
     }
